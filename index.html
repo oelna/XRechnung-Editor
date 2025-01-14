@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="home">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Pages</title>
+
+	<link rel="stylesheet" href="style.css" />
+	<script type="importmap">{
+		"imports": {
+			"alpine": "https://cdn.skypack.dev/alpinejs"
+		}
+	}</script>
+	<script type="" src="./xml2json.js"></script>
+	<script type="module" src="./app.js"></script>
+</head>
+<body>
+
+	<div class="editor" x-data="doc">
+		<div id="dropzone" @drop="await dropHandler($event)" @dragover="dragOverHandler($event)">Drag XRechnung here</div>
+		<div id="viewer" x-data>
+			<ul>
+			<!--
+			<template x-for="node in dom">
+				<li :id="$id('node')">
+					<span x-text="node.tagName"></span>
+					<span x-text="node.textContent"></span>
+				<li>
+			</template>
+			-->
+			<template x-for="(level, i) in dom">
+				<li x-html="renderLevel(level, i)"><li>
+			</template>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
